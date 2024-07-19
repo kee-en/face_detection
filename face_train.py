@@ -9,7 +9,6 @@ if __name__ == "__main__":
     print('\n[INFO] Training...')
     detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-
     def get_images_and_labels(path):
         """
         Load face images and corresponding labels from the given directory path.
@@ -31,12 +30,11 @@ if __name__ == "__main__":
             id = int(os.path.split(image_path)[-1].split('-')[1])
             faces = detector.detectMultiScale(img_numpy)
 
-            for (x, y, w, h) in faces:
-                face_samples.append(img_numpy[y:y+h, x:x+w])
+            for x, y, w, h in faces:
+                face_samples.append(img_numpy[y : y + h, x : x + w])
                 ids.append(id)
 
         return face_samples, ids
-
 
     faces, ids = get_images_and_labels(path)
 
